@@ -1,0 +1,424 @@
+.form-builder-form {
+    background-color: #FFFFFF;
+    font-family: 'SFUIText','arnamu', serif;
+    font-weight: normal;
+    overflow: auto;
+    height: 100vh;
+    color: #262626;
+
+    .wrapper {
+        position: relative;
+    }
+
+    .header {
+        position: relative;
+        z-index: 100;
+        padding-top: 180px;
+
+        .header-logo {
+            border-radius: 5px;
+            padding: 6px;
+            background-color: white;
+        }
+
+        .header-title {
+            position: absolute;
+            cursor: pointer;
+            color: #FFFFFF;
+        }
+    }
+
+    .form-container {
+        position: relative;
+        z-index: 100;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        align-items: center;
+        box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.15);
+
+
+        .title {
+            font-family: 'SFUIText','arnamu', serif;
+            font-weight: bold;
+            color: #262626;
+        }
+
+        h2.title {
+            font-size: 32px;
+        }
+
+        h3.title {
+            font-size: 24px;
+        }
+
+        .form {
+            margin-top: 48px;
+
+            .screen {
+                margin-top: 32px;
+            }
+        }
+
+        .finished-form {
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .ant-form-item {
+            margin-bottom: 56px !important;
+            padding-bottom: 0;
+        }
+        .ant-form-item-label {
+            padding-bottom: 16px;
+
+            label {
+                font-family: 'SFUIText','arnamu', serif;
+                font-weight: normal;
+                font-size: 16px;
+                color: #262626;
+                letter-spacing: 0;
+                line-height: 16px;
+            }
+        }
+        .ant-form-explain {
+            font-family: 'SFUIText','arnamu', serif;
+            font-weight: normal;
+            font-size: 14px;
+            padding-left: 12px;
+            position: absolute;
+        }
+        .ant-form-item-children {
+            .ant-input {
+                font-family: 'SFUIText','arnamu', serif;
+                font-weight: normal;
+                font-size: 18px;
+                letter-spacing: 0;
+                color: #262626;
+
+                &::placeholder {
+                    font-family: 'SFUIText','arnamu', serif;
+                    font-weight: normal;
+                    font-size: 18px;
+                    letter-spacing: 0;
+                    color: #BFBFBF;
+                }
+            }
+            .ant-input-prefix {
+                font-family: 'SFUIText','arnamu', serif;
+                font-weight: normal;
+                font-size: 18px;
+                letter-spacing: 0;
+                color: #BFBFBF;
+            }
+        }
+        .ant-select-search__field {
+            font-family: 'SFUIText','arnamu', serif;
+            font-weight: normal;
+            font-size: 18px;
+            letter-spacing: 0;
+            color: #262626;
+        }
+        .ant-select-selection-selected-value {
+            font-family: 'SFUIText' ,'arnamu', serif;
+            font-weight: normal;
+            font-size: 18px;
+            letter-spacing: 0;
+            color: #262626;
+        }
+        .ant-select-selection__placeholder {
+            font-family: 'SFUIText','arnamu', serif;
+            font-weight: normal;
+            font-size: 18px;
+            letter-spacing: 0;
+            color: #BFBFBF;
+        }
+        .ant-switch-inner {
+            font-family: 'SFUIText','arnamu', serif;
+            font-weight: normal;
+            letter-spacing: 0;
+        }
+        .ant-radio-wrapper,
+        .ant-checkbox-wrapper {
+            font-family: 'SFUIText','arnamu', serif;
+            font-weight: normal;
+            font-size: 18px;
+            white-space: normal;
+            color: #262626;
+            letter-spacing: 0;
+            //line-height: 18px;
+            margin-bottom: 18px;
+        }
+        .ant-input,
+        .ant-input-number,
+        .ant-select,
+        .ant-select-selection,
+        .ant-select-selector,
+        .ant-input-affix-wrapper {
+            border: none;
+            width: 100%;
+        }
+        .ant-btn-lg {
+            padding: 10px 28px 10px 28px;
+            margin: 10px;
+            height: auto;
+
+            span {
+                font-family: 'SFUIText', 'arnamu', serif;
+                font-weight: normal;
+                font-size: 16px;
+            }
+        }
+        .ant-form-item-required{
+            font-size: 16px;
+        }
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 48px;
+    }
+
+    .footer-logo {
+        width: 32px;
+    }
+
+    .footer-text {
+        margin: 10px;
+        font-size: 14px;
+        cursor: pointer;
+        letter-spacing: 0;
+        color: #BFBFBF;
+    }
+
+
+    .background {
+        top: 0;
+        position: absolute;
+        z-index: 0;
+        max-width:100%;
+
+        .background-image {
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100vw;
+            max-width:100%;
+            height: 411px;
+        }
+
+        .background-gradient {
+            position: absolute;
+            max-width:100%;
+            width: 100vw;
+            height: 411px;
+            background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 6.00) 100%);
+        }
+    }
+
+    @media screen and (max-width:2560px) {
+        .header {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-logo {
+            height: 102px;
+            width: 102px;
+        }
+        .form-container {
+            width: 1020px;
+            padding: 60px 16px 60px 80px;
+            margin: 48px auto 72px auto;
+        }
+        .header-title {
+            font-size: 36px;
+            margin-left: 36px;
+        }
+    }
+    @media screen and (max-width:1920px) {
+        .header {
+            width: 730px;
+            margin: 0 auto;
+        }
+
+        .header-logo {
+            height: 102px;
+            width: 102px;
+        }
+        .form-container {
+            width: 1020px;
+            padding: 60px 16px 60px 80px;
+            margin: 48px auto 72px auto;
+        }
+        .header-title {
+            font-size: 36px;
+            margin-left: 36px;
+        }
+    }
+    @media screen and (max-width:1440px) {
+        .header {
+            width: 630px;
+            margin: 0 auto ;
+        }
+
+        .header-logo {
+            height: 102px;
+            width: 102px;
+        }
+        .form-container {
+            width: 712px;
+            padding: 60px 16px 60px 80px;
+            margin: 48px auto 72px auto;
+        }
+        .header-title {
+            font-size: 36px;
+            margin-left: 36px;
+        }
+    }
+    @media screen and (max-width:1340px) {
+        .header {
+            width: 630px;
+            margin: 0 auto ;
+        }
+
+        .header-logo {
+            height: 102px;
+            width: 102px;
+        }
+        .form-container {
+            width: 712px;
+            padding: 60px 16px 60px 80px;
+            margin: 48px auto 72px auto;
+        }
+        .header-title {
+            font-size: 36px;
+            margin-left: 36px;
+        }
+    }
+    @media screen and (max-width:1024px) {
+        .header {
+            width: 630px;
+            margin: 0 auto ;
+        }
+        .header-logo {
+            height: 102px;
+            width: 102px;
+        }
+        .form-container {
+            width: 712px;
+            padding: 60px 16px 60px 80px;
+            margin: 48px auto 72px auto;
+        }
+        .header-title {
+            font-size: 36px;
+            margin-left: 36px;
+        }
+    }
+    @media screen and (max-width:980px) {
+        .header {
+            width: 630px;
+            margin: 0 auto ;
+        }
+        .header-logo {
+            height: 102px;
+            width: 102px;
+        }
+
+        .header-title {
+            font-size: 36px;
+            margin-left: 36px;
+        }
+
+        .form-container {
+            width: 712px;
+            padding: 60px 16px 60px 80px;
+            margin: 48px auto 72px auto;
+        }
+
+    }
+    @media screen and (max-width:856px) {
+        .header {
+            width: 630px;
+            margin: 0 auto ;
+        }
+        .header-logo {
+            height: 102px;
+            width: 102px;
+        }
+        .form-container {
+            width: auto;
+            padding: 60px 16px 60px 56px;
+            margin: 48px 24px 48px 24px;
+        }
+        .header-title {
+            font-size: 36px;
+            margin: 0 24px 0 36px;
+        }
+    }
+    @media screen and (max-width:629px) {
+        .header {
+            width: auto;
+            margin: 0 auto ;
+        }
+        .header-logo {
+            margin-left: 24px;
+            height: 65px;
+            width: 65px;
+        }
+        .header-title {
+            margin: 0 16px 0 10px;
+            font-size: 24px;
+        }
+
+        .form-container {
+            width: auto;
+            padding: 60px 16px 60px 56px;
+            margin: 48px 24px 48px 24px;
+        }
+    }
+    @media screen and (max-width:426px) {
+        .header {
+            width: auto;
+            margin: 0 auto ;
+        }
+        .header-logo {
+            margin-left: 16px;
+            height: 62px;
+            width: 62px;
+        }
+
+        .header-title {
+            margin: 0 16px 0 10px;
+            font-size: 20px;
+        }
+
+        .form-container {
+            width: auto;
+            padding: 32px 16px 56px 16px;
+            margin: 40px 16px 24px 16px;
+        }
+
+    }
+    @media screen and (max-width:374px) {
+        .header {
+            position: relative;
+        }
+        .header-logo {
+            margin-left: 16px;
+            height: 62px;
+            width: 62px;
+        }
+
+        .header-title {
+            margin: 0 16px 0 16px;
+            font-size: 20px;
+        }
+
+        .form-container {
+            padding: 32px 16px 56px 16px;
+            margin: 40px 16px 24px 16px;
+        }
+    }
+}

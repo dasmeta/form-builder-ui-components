@@ -1,0 +1,32 @@
+@import '../../theme';
+
+.form-builder {
+    *[contenteditable="true"] {
+        border-bottom: 1px dashed @gray;
+        border-left: 4px solid @gray;
+        padding-left: 4px;
+        position: relative;
+        transition: all 0.3s;
+        cursor: text;
+    
+        &:empty:after {
+            content: attr(placeholder);
+            color: @gray;
+            position: absolute;
+            top: 0;
+            left: 6px;
+        }
+    
+        &:focus {
+            outline: none !important;
+            border-bottom: 1px dashed @primary-6;
+            border-left: 4px solid @primary-6;
+        }
+    }
+
+    .preview {
+        cursor: pointer;
+        user-select: none;
+    }
+}
+

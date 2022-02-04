@@ -1,0 +1,30 @@
+@import "../../theme.less";
+
+.contentInner {
+    background: #fff;
+    padding: 16px;
+    min-height: auto;
+    border: 1px solid #e8e8e8;
+    box-shadow: @box-shadow-strong;
+    border-radius: @border-radius;
+}
+
+.transparent {
+    background: transparent;
+}
+
+.dynamic {
+    min-height: auto;
+}
+
+@media (max-width: 767px) {
+    .contentInner {
+        padding: 12px;
+        min-height: e("calc(100vh - 160px)");
+    }
+
+    .dynamic {
+        min-height: unset;
+        margin-bottom: 18px;
+    }
+}

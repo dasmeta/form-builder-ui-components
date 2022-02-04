@@ -1,0 +1,86 @@
+@import '../../theme';
+
+.form-builder {
+
+    .question {
+
+        .tool {
+            display: none;
+        }
+
+        .action {
+            color: @primary-color;
+        }
+
+
+        &.focus {
+            .tool {
+                width: 28%;
+                display: unset;
+            }
+        }
+
+        .question-option {
+            display: flex;
+            justify-content: flex-start;
+
+            & > *:nth-child(1) {
+                display: flex;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                opacity: 0;
+                position: relative;
+                color: @dark-gray;
+            }
+
+            & > *:nth-child(2) {
+                display: flex;
+                justify-content: center;
+                width: 50px;
+            }
+
+            & > *:nth-child(3) {
+                width: 60%;
+            }
+
+            &:focus-within {
+                & > *:nth-child(1) {
+                    opacity: 1;
+                }
+            }
+
+            .question-option-text {
+                *[contenteditable="true"] {
+                    border-left: unset;
+                    transition: unset;
+                }
+            }
+        }
+    }
+
+    .action-icon {
+
+        cursor: pointer;
+        font-size: 16px;
+        color: #999;
+        transition: all .3s;
+        padding: 2px;
+
+        &:hover {
+            color: #777;
+            font-size: 20px;
+            padding: 0;
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+    }
+
+    .drag-handle {
+        padding-top: 5px;
+    }
+}
