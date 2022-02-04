@@ -1,0 +1,14 @@
+@import "../../theme.less";
+
+.prefixLevel(@level) {
+    .prefix-@{level} {
+        input {
+            padding-left: calc(18px + 0.6em * @level) !important;
+        }
+    }
+}
+
+.prefixLevel(2);
+.prefixLevel(3);
+.prefixLevel(4);
+.prefixLevel(5);

@@ -1,0 +1,7 @@
+.idea/
+!.idea/watcherTasks.xml
+node_modules/
+lib/
+.vscode/
+build/
+storybook-static/
