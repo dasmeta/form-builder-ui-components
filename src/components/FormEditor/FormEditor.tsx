@@ -10,7 +10,7 @@ import { ConfigContext } from "../../context/Config";
 import Section from "../Section";
 import Form from "../Form";
 
-import "./formEditor.less";
+import "./FormEditor.less";
 
 const { Text } = Typography;
 
