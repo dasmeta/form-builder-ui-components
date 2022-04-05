@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Form, FormInstance } from "antd";
 import moment from "moment";
 import isString from "lodash/isString";
 import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
 import set from "lodash/set";
+import uniq from "lodash/uniq";
 import { ConfigContext } from "../../context/Config";
 import { normalize as phoneInputNormalize, validator as phoneInputValidator } from "../PhoneInput";
 import formElement from "../FormElement";
@@ -140,7 +141,9 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
     wrapper: Wrapper,
 }) => {
 
+    const dependFieldList = uniq(defaultQuestions.map(item => item.depend).filter(Boolean));
     const { translations } = useContext(ConfigContext);
+    const [dependFieldValues, setDependFieldValues] = useState<any>({});
 
     const scrollToRef = (ref) => {
         if (width <= 978) {
@@ -176,13 +179,22 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
         return get(data, key);
     };
 
-    const elementProps = (item) => ({
+    const handleSwitchChange = (name, value) => {
+        if(!dependFieldList.includes(name)) {
+            return;
+        }
+        setDependFieldValues((values) => ({ ...values, [name]: value }));
+    }
+
+    const elementProps = (item, disabled) => ({ 
         item,
         form,
         handleCondition,
         editable,
         readOnly,
         scrollToRef,
+        handleSwitchChange,
+        disabled
     });
 
     return (
@@ -196,6 +208,8 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
 
                 const formLayouts = formItemLayouts[item.type] || formItemDefaultLayout;
 
+                const isDisabled = item.depend ? !get(data, item.depend, dependFieldValues[item.depend]) : false;
+
                 if (["multiple-choice", "checkboxes", "dropdown", "switch"].includes(item.type)) {
                     calcOptionsMap(item);
                 }
@@ -204,7 +218,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
                     path.unshift("cascader");
                 }
 
-                const formItemElement = (options: any = {}) => (
+                const FormItemElement = (options: any = {}) => (
                     <Form.Item
                         name={path}
                         key={index}
@@ -215,13 +229,13 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
                         rules={getRules(item, form, translations)}
                         {...formLayouts}
                     >
-                        {formElement({ ...elementProps(item) })}
+                        {formElement({ ...elementProps(item, isDisabled) })}
                     </Form.Item>
                 );
                 if (Wrapper) {
-                    return <Wrapper key={index} renderItem={formItemElement} />;
+                    return <Wrapper key={index} renderItem={(props) => <FormItemElement {...props} />} />;
                 }
-                return formItemElement({ showLabel: true });
+                return <FormItemElement key={index} showLabel />;
             })
         }
         </>
