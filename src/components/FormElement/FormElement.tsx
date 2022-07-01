@@ -1,6 +1,5 @@
 import React, { useRef, useContext } from "react";
 import { Checkbox, Input, InputNumber, Radio, Switch, DatePicker, Select } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
 import get from "lodash/get";
 import keyBy from "lodash/keyBy";
 import isString from "lodash/isString";
@@ -13,8 +12,8 @@ import CascadeSelect from "../CascadeSelect";
 import WebCam from "../WebCam";
 import TermCondition from "../TermCondition";
 import PhoneInput from "../PhoneInput";
-import FileUpload from "../FileUpload";
 import countryList from "../Country/list.json";
+import Upload from "../Upload";
 
 type FormElementProps = {
     item: any;
@@ -160,31 +159,19 @@ const FormElement: React.FC<FormElementProps> = ({
         return <PhoneInput disabled={disabled || readOnly} defaultCountry={defaultCountry} />;
     }
     if (item.type === "file-upload") {
-        const attachments = isArray(item.options[0].value) ? item.options[0].value : [];
-        const options = types["file-upload"] as UploadProps;
+        const options = types['file-upload'] as UploadProps;
+        const attachments = isArray(item.options[0].value) ? item.options[0].value: [];
 
         return (
-            <>
-                {attachments.map((item) => (
-                    <div>
-                        <DownloadOutlined />{" "}
-                        <a href={item.src} download target="_blank">
-                            {item.name}
-                        </a>
-                    </div>
-                ))}
-                <FileUpload 
-                    host={options.host}
-                    action={options.action}
-                    disabled={readOnly} 
-                    folder={options.folder}
-                    onDelete={options.onDelete}
-                    multiple 
-                    withName 
-                    label="Attach File" 
-                />
-            </>
-        );
+            <Upload
+                attachments={attachments}
+                host={options.host}
+                action={options.action}
+                folder={options.folder}
+                onDelete={options.onDelete}
+                editable={editable} 
+            />
+        )
     }
     if (item.type === "cascader") {
         return <CascadeSelect stages={item.stages} options={item.options} />;
