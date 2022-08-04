@@ -27,6 +27,7 @@ import QuestionSwitchOptions from '../QuestionSwitchOptions';
 import FormUpload from '../FormUpload';
 
 import './Question.less';
+import StaticText from "../StaticText";
 
 const { Text } = Typography;
 
@@ -234,12 +235,14 @@ const Question: React.FC<QuestionProps> = memo(({
             <div className="question-row">
                 <div>
                     <div className="question-name">
-                        <h3
-                            contentEditable={true}
-                            placeholder="Question"
-                            onBlur={setQuestion}
-                            dangerouslySetInnerHTML={{ __html: state.question }}
-                        />
+                        {!["static-text"].includes(state.type) && (
+                            <h3
+                                contentEditable={true}
+                                placeholder="Question"
+                                onBlur={setQuestion}
+                                dangerouslySetInnerHTML={{ __html: state.question }}
+                            />
+                        )}
                     </div>
                     <div className="question-body">
                         {["short-answer", "dropdown", "number"].includes(state.type) && (
@@ -284,6 +287,9 @@ const Question: React.FC<QuestionProps> = memo(({
                         {["file-upload"].includes(state.type) && (
                             <FormUpload options={state.options} onChange={setOptions} />
                         )}
+                        {["static-text"].includes(state.type) && (
+                            <StaticText options={state.options} setOptions={setOptions} />
+                        )}
                     </div>
                 </div>
 
@@ -308,7 +314,7 @@ const Question: React.FC<QuestionProps> = memo(({
                     </div>
                     {showAssociationField && !["cascader"].includes(state.type) && (
                         <NameSelect
-                            disabled={["term-condition"].includes(state.type)}
+                            disabled={["term-condition", "static-text"].includes(state.type)}
                             className="select"
                             defaultValue={state.name || undefined}
                             onBlur={isExpert && ((value) => setName(get(value, "target.value")))}
@@ -351,6 +357,11 @@ const Question: React.FC<QuestionProps> = memo(({
                         {availableTypes.includes('short-answer') && (
                             <Select.Option value="short-answer">
                                 <DashOutlined /> {translations.shortAnswer}
+                            </Select.Option>
+                        )}
+                        {availableTypes.includes('static-text') && (
+                            <Select.Option value="static-text">
+                                <DashOutlined /> {translations.staticText}
                             </Select.Option>
                         )}
                         {availableTypes.includes('multiple-choice') && (
@@ -429,7 +440,7 @@ const Question: React.FC<QuestionProps> = memo(({
                     )}
                     {showDependencyField && (
                         <Select
-                            disabled={["term-condition"].includes(state.type)}
+                            disabled={["term-condition", "static-text"].includes(state.type)}
                             className="select"
                             defaultValue={state.depend || undefined}
                             onChange={setDepend}
@@ -478,7 +489,7 @@ const Question: React.FC<QuestionProps> = memo(({
                             </label>
                         </>
                     )}
-                {!(["term-condition"].includes(state.type) || state.unique) && (
+                {!(["term-condition", "static-text"].includes(state.type) || state.unique) && (
                     <>
                         <Divider type="vertical" />
                         <label>

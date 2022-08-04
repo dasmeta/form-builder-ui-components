@@ -126,6 +126,7 @@ type FormBuilderProps = {
     formItemLayouts?: any;
     wrapper?: any;
     handleCondition?: Function;
+    fulfillCondition?: boolean;
 }
 
 const FormBuilder: React.FC<FormBuilderProps> = ({
@@ -139,6 +140,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
     formItemDefaultLayout = mainFormItemDefaultLayout,
     formItemLayouts = mainFormItemLayouts,
     wrapper: Wrapper,
+    fulfillCondition = false
 }) => {
 
     const dependFieldList = uniq(defaultQuestions.map(item => item.depend).filter(Boolean));
@@ -194,14 +196,15 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
         readOnly,
         scrollToRef,
         handleSwitchChange,
-        disabled
+        disabled,
+        fulfillCondition
     });
 
     return (
         <>
         {
             defaultQuestions
-            .filter((item) => item.name || item.question)
+            .filter((item) => item.name || item.question || item.type === "static-text")
             .filter((item) => (!readOnly && filterHidden ? !item.hiddenField : true))
             .map((item, index) => {
                 const path = (item.name || item.question).split(".");

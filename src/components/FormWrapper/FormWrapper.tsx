@@ -11,9 +11,10 @@ type FormWrapperProps = {
     editable: boolean;
     readOnly: boolean;
     filterHidden: boolean;
+    fulfillCondition: boolean;
 }
 
-const FormWrapper: React.FC<FormWrapperProps> = ({ questions = [], data = {}, init, handleCondition, editable, readOnly, filterHidden }) => {
+const FormWrapper: React.FC<FormWrapperProps> = ({ questions = [], data = {}, init, handleCondition, editable, readOnly, filterHidden, fulfillCondition }) => {
     const [form] = Form.useForm();
 
     useEffect(() => {
@@ -31,6 +32,7 @@ const FormWrapper: React.FC<FormWrapperProps> = ({ questions = [], data = {}, in
                     readOnly={readOnly}
                     filterHidden={filterHidden}
                     handleCondition={handleCondition}
+                    fulfillCondition={fulfillCondition}
                 />
             </Form>
         </div>

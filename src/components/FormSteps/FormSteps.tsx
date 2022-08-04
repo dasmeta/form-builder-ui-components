@@ -142,6 +142,7 @@ const FormSteps: React.FC<FormStepsProps> = ({
                     key={sectionData.id}
                     questions={sectionData.questions}
                     data={defaultValues[state.current - 1] || get(data.current, `[${state.current - 1}].data`, {})}
+                    fulfillCondition={state.fulfillCondition}
                 />
                 <div style={{ textAlign: "center", marginTop: 60 }}>
                     <Button
@@ -175,6 +176,7 @@ const FormSteps: React.FC<FormStepsProps> = ({
                     key={sectionData.id}
                     questions={sectionData.questions}
                     data={defaultValues[state.current - 1] || get(data.current, `[${state.current - 1}].data`, {})}
+                    fulfillCondition={state.fulfillCondition}
                 />
             </div>
 

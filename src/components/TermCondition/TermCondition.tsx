@@ -8,13 +8,15 @@ import "./TermCondition.less";
 type TermConditionProps = {
     data: any;
     onChange: Function;
-    disabled: Boolean;
+    disabled: boolean;
+    fulfillCondition: boolean; 
 }
 
 const TermCondition = forwardRef<any, TermConditionProps>(({ 
     data, 
     onChange, 
-    disabled 
+    disabled,
+    fulfillCondition = false
 }) => {
 
     const { translations } = useContext(ConfigContext);
@@ -30,6 +32,7 @@ const TermCondition = forwardRef<any, TermConditionProps>(({
                     <Checkbox
                         style={{ marginTop: 40, fontSize: 16 }}
                         onChange={value => onChange(get(value, "target.checked"), false)}
+                        checked={fulfillCondition}
                     >
                         {translations.termConditionAgreeText}
                     </Checkbox>

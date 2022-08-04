@@ -14,6 +14,7 @@ import TermCondition from "../TermCondition";
 import PhoneInput from "../PhoneInput";
 import countryList from "../Country/list.json";
 import Upload from "../Upload";
+import StaticText from "../StaticText";
 
 type FormElementProps = {
     item: any;
@@ -23,7 +24,8 @@ type FormElementProps = {
     scrollToRef?: Function;
     handleCondition?: Function;
     handleSwitchChange?: Function;
-    editable: boolean; 
+    editable: boolean;
+    fulfillCondition?: boolean;
 }
 
 const FormElement: React.FC<FormElementProps> = ({ 
@@ -34,6 +36,7 @@ const FormElement: React.FC<FormElementProps> = ({
     handleCondition = () => {},
     handleSwitchChange = () => {},
     editable,
+    fulfillCondition = false
 }) => {
     const myRef = useRef(null);
 
@@ -108,6 +111,7 @@ const FormElement: React.FC<FormElementProps> = ({
     if (item.type === "term-condition") {
         return (
             <TermCondition
+                fulfillCondition={fulfillCondition}
                 data={item}
                 onChange={(value) => handleCondition(value)}
                 disabled={disabled || readOnly}
@@ -142,7 +146,7 @@ const FormElement: React.FC<FormElementProps> = ({
     if (item.type === "switch") {
         return (
             <Switch
-                onChange={(value) => handleSwitchChange(item.name, value)}
+                onChange={(value) => handleSwitchChange(item.name || item.question, value)}
                 disabled={disabled || readOnly}
                 checkedChildren={get(item, "options[0].value", "")}
                 unCheckedChildren={get(item, "options[1].value", "")}
@@ -154,9 +158,9 @@ const FormElement: React.FC<FormElementProps> = ({
     }
     if (item.type === "phone-number") {
         const options = types['phone-number'] as PhoneNumberProps;
-        const defaultCountry = options && get(keyBy(countryList, "name"), options.countryCode);
+        const defaultCountry = options && get(keyBy(countryList, "name"), options.country);
 
-        return <PhoneInput disabled={disabled || readOnly} defaultCountry={defaultCountry} />;
+        return <PhoneInput disabled={disabled || readOnly} defaultCountry={defaultCountry?.code} />;
     }
     if (item.type === "file-upload") {
         const options = types['file-upload'] as UploadProps;
@@ -178,6 +182,9 @@ const FormElement: React.FC<FormElementProps> = ({
     }
     if (item.type === "rating") {
         return <Rate />;
+    }
+    if(item.type === "static-text") {
+        return <StaticText options={item.options} readOnly={true} />
     }
     return (
         <Input

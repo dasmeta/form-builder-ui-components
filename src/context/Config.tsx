@@ -16,7 +16,7 @@ export type SignatureProps = {
 }
 
 export type PhoneNumberProps = {
-    countryCode?: string;
+    country?: string;
 }
 
 export type TranslationsProps = Partial<{
@@ -60,6 +60,7 @@ export type TranslationsProps = Partial<{
     termCondition:  ReactElement | string;
     signature:  ReactElement | string;
     shortAnswer:  ReactElement | string;
+    staticText: ReactElement | string;
     multipleChoice:  ReactElement | string;
     cascader:  ReactElement | string;
     checkboxes:  ReactElement | string;
@@ -116,6 +117,7 @@ const defaultTranslations: TranslationsProps = {
     termCondition:  'Term Condition',
     signature:  'Signature',
     shortAnswer:  'Short Answer',
+    staticText: 'Static Text',
     multipleChoice:  'Multiple choice',
     cascader:  'Cascader',
     checkboxes:  'Checkboxes',
@@ -135,6 +137,7 @@ export type ConfigProps = {
       'term-condition'?: boolean;
       'signature'?: SignatureProps | false;
       'short-answer'?: boolean;
+      'static-text'?: boolean;
       'multiple-choice'?: boolean;
       'cascader'?: boolean;
       'checkboxes'?: boolean;
@@ -159,6 +162,7 @@ const defaultProps: ConfigProps & {
         'signature': {
             onUpload: async (file) => ({})
         },
+        'static-text': true,
         'short-answer': true,
         'multiple-choice': true,
         'cascader': true,
