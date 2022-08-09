@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Steps } from "antd";
+import { Steps, Typography } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
 import cloneDeep from "lodash/cloneDeep";
 import isEmpty from "lodash/isEmpty";
 import set from "lodash/set";
 import get from "lodash/get";
 import "./EllipsisSteps.less";
+
+const { Paragraph } = Typography;
 
 let template = [];
 
@@ -89,7 +91,19 @@ const EllipsisSteps: React.FC<EllipsisStepsProps> = ({
     return (
         <Steps current={currentStep} onChange={current => onNext(current)}>
             {stepsForRender.map((section, index) => (
-                <Steps.Step key={`section-${section.id || index}`} title={renderTitle(section)} icon={section.icon} />
+                <Steps.Step
+                    style={{ maxWidth: "100%" }}
+                    key={`section-${section.id || index}`}
+                    icon={section.icon}
+                    title={
+                        <Paragraph
+                            ellipsis={{ rows: 1 }}
+                            style={{ maxWidth: '15em' }}
+                          >
+                            {renderTitle(section)}
+                        </Paragraph>
+                    }
+                />
             ))}
         </Steps>
     );

@@ -180,11 +180,14 @@ const FormSteps: React.FC<FormStepsProps> = ({
                 />
             </div>
 
-            <EllipsisSteps
-                handleNext={readOnly ? (step) => changeState({ current: step }) : undefined}
-                currentStep={state.current - 1}
-                steps={state.sections}
-            />
+            <div style={{ maxWidth: '100%' }}>
+                <EllipsisSteps
+                    handleNext={readOnly ? (step) => changeState({ current: step }) : undefined}
+                    currentStep={state.current - 1}
+                    steps={state.sections}
+                />
+            </div>
+
             <div style={{ textAlign: "center", marginTop: 60 }}>
                 <Button size="large" disabled={state.current === 1 || state.loading} onClick={prev}>
                     <LeftOutlined /> Previous
