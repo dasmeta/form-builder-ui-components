@@ -85,7 +85,7 @@ const Question: React.FC<QuestionProps> = memo(({
         hiddenField: ["signature", "camera"].includes(data.type) || false,
         options: data.options || [{ value: "Option 1", validOption: true }],
         focus: true,
-        multipleMode: true
+        multipleMode: data.multipleMode
     })
 
     const firstUpdate = useRef(true);
