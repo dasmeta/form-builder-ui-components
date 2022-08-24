@@ -6,7 +6,7 @@ type EmbedFormProps = {
     form: FormInstance; 
     item: any;
     formItemLayout: any;
-    wrapper: any;
+    wrapper?: any;
     filterHidden?: boolean;
     questions: Array<any>;
 }
@@ -22,6 +22,7 @@ const EmbedForm: React.FC<EmbedFormProps> = ({
 
     return (
         <FormBuilder
+            editable={true}
             filterHidden={filterHidden}
             defaultQuestions={questions}
             data={item}

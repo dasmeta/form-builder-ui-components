@@ -30,7 +30,7 @@ const Upload: React.FC<UploadProps> = ({
     if(!editable) {
         return (
             <>
-                {value.map((item) => (
+                {(value || []).map((item) => (
                     <div>
                         <DownloadOutlined />{" "}
                         <a href={item.src} download target="_blank">
@@ -62,6 +62,14 @@ const Upload: React.FC<UploadProps> = ({
                 onChange={onChange}
                 onDelete={onDelete}
             />
+            {(value || []).map((item) => (
+                <div>
+                    <DownloadOutlined />{" "}
+                    <a href={item.src} download target="_blank">
+                        {item.name}
+                    </a>
+                </div>
+            ))}
         </>
     );
 };

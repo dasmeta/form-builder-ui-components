@@ -173,7 +173,7 @@ const FormElement: React.FC<FormElementProps> = ({
                 action={options.action}
                 folder={options.folder}
                 onDelete={options.onDelete}
-                editable={editable} 
+                editable={editable}
             />
         )
     }
