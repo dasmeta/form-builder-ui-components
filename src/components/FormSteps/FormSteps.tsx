@@ -99,6 +99,10 @@ const FormSteps: React.FC<FormStepsProps> = ({
                     form.scrollToField(errorFields[0].name);
                 }
             });
+
+        // scroll to top on first title page when next/submit button clicked
+        const testTitle = document.getElementsByClassName('title')[0] || null;
+        testTitle && testTitle.scrollIntoView({block: "center", behavior: "smooth"});
     };
 
     const handleCondition = (value) => {
