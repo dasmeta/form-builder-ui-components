@@ -19,6 +19,10 @@ export type PhoneNumberProps = {
     country?: string;
 }
 
+export type DatePickerProps = {
+    rangePicker?: boolean;
+}
+
 export type TranslationsProps = Partial<{
     allChangesSaved: ReactElement | string;
     saving: ReactElement | string;
@@ -142,7 +146,7 @@ export type ConfigProps = {
       'cascader'?: boolean;
       'checkboxes'?: boolean;
       'dropdown'?: boolean;
-      'date-picker'?: boolean;
+      'date-picker'?: DatePickerProps | false;
       'phone-number'?: PhoneNumberProps | false;
       'birthday'?: boolean;
       'number'?: boolean;
@@ -168,7 +172,9 @@ const defaultProps: ConfigProps & {
         'cascader': true,
         'checkboxes': true,
         'dropdown': true,
-        'date-picker': true,
+        'date-picker': {
+            rangePicker: false
+        },
         'phone-number': {},
         'birthday': true,
         'number': true,
@@ -202,7 +208,7 @@ const Provider: React.FC<ConfigProps> = ({ children, ...props }) => {
 
     return (
         <ConfigContext.Provider
-            value={{ ...defaultProps, ...props, availableTypes, translations }}
+            value={{ ...defaultProps, ...props, availableTypes, translations, types }}
         >
             {children}
         </ConfigContext.Provider>

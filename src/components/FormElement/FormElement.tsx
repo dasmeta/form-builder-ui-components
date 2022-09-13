@@ -4,7 +4,7 @@ import get from "lodash/get";
 import keyBy from "lodash/keyBy";
 import isString from "lodash/isString";
 import isArray from "lodash/isArray";
-import { CameraProps, ConfigContext, PhoneNumberProps, SignatureProps, UploadProps } from '../../context/Config';
+import { CameraProps, ConfigContext, DatePickerProps, PhoneNumberProps, SignatureProps, UploadProps } from '../../context/Config';
 import Rate from "../Rate";
 import BirthDay from "../Birthday";
 import Signature from "../Signature";
@@ -85,6 +85,20 @@ const FormElement: React.FC<FormElementProps> = ({
         );
     }
     if (item.type === "date-picker") {
+
+        const options = types['date-picker'] as DatePickerProps;
+
+        if(options.rangePicker) {
+            return (
+                <DatePicker.RangePicker
+                    style={{ width: "100%" }}
+                    disabled={disabled || readOnly}
+                    allowClear={!item.required}
+                    placeholder={[item.placeholder || item.question, ""]}
+                />
+            )
+        }
+
         return (
             <DatePicker
                 style={{ width: "100%" }}
