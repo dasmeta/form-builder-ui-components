@@ -156,6 +156,7 @@ export type ConfigProps = {
       'rating'?: boolean;
     },
     translations?: TranslationsProps;
+    prefix: string
 }
 
 const defaultProps: ConfigProps & {
@@ -196,6 +197,7 @@ const defaultProps: ConfigProps & {
     },
     availableTypes: [],
     translations: defaultTranslations,
+    prefix: 'form'
 }
 
 export const ConfigContext = createContext(defaultProps);

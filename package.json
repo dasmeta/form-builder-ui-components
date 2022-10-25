@@ -1,6 +1,6 @@
 {
   "name": "@dasmeta/form-builder-ui-components",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "",
   "main": "./lib/index.js",
   "module": "./lib/index.es.js",

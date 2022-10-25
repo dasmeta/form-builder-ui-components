@@ -63,7 +63,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
     onSave = async () => {}
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translations, prefix } = useContext(ConfigContext);
 
     const [state, setState] = useState<any>({
         sections: [],
@@ -212,10 +212,10 @@ const FormEditor: React.FC<FormEditorProps> = ({
 
     const handlePastSections = () => {
         try {
-            const { sectionData, validateKey } = store.get("section-copy");
+            const { sectionData, validateKey } = store.get(`${prefix}-section-copy`);
             if (Date.now() - validateKey > 10 * 60 * 1000) {
                 message.warn(translations.copyAgain);
-                store.remove("section-copy");
+                store.remove(`${prefix}-section-copy`);
                 return;
             }
 
@@ -254,7 +254,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
                                     message.warn(translations.nothingToCopy);
                                     return;
                                 }
-                                store.set("section-copy", { sectionData: state.sections, validateKey: Date.now() });
+                                store.set(`${prefix}-section-copy`, { sectionData: state.sections, validateKey: Date.now() });
                             },
                         }}
                     >
