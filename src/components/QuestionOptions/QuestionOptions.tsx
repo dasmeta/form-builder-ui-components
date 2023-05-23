@@ -50,7 +50,7 @@ const QuestionOptions: React.FC<QuestionOptionsProps> = memo(({
     onChange = () => {}
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
 
     const [focusState, setFocusState] = useState<any>({
         focus: false,
@@ -281,7 +281,7 @@ const QuestionOptions: React.FC<QuestionOptionsProps> = memo(({
                     <div className="question-option-text">
                         <h4>
                             <span onClick={addOption} style={{ cursor: "pointer" }}>
-                                <span className="action">{translations.addOtherOption}</span>
+                                <span className="action">{translate('add-other-option')}</span>
                             </span>
                         </h4>
                     </div>

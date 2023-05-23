@@ -69,7 +69,7 @@ const Question: React.FC<QuestionProps> = memo(({
     dragHandleProps
 }) => {
 
-    const { availableTypes, translations } = useContext(ConfigContext);
+    const { availableTypes, translate } = useContext(ConfigContext);
 
     const [state, setState] = useState<any>({
         id: data.id || Date.now(),
@@ -188,7 +188,7 @@ const Question: React.FC<QuestionProps> = memo(({
     const handlePaste = () => {
         const { question, validateKey } = store.get("question-copy");
         if (Date.now() - validateKey > 10 * 60 * 1000) {
-            message.warn(translations.copyAgain);
+            message.warn(translate('copy-again'));
             store.remove("question-copy");
             return;
         }
@@ -304,11 +304,11 @@ const Question: React.FC<QuestionProps> = memo(({
                                     }),
                             }}
                         >
-                            {translations.copyQuestion}
+                            {translate('copy-question')}
                         </Text>
                         <Divider type="vertical" />
                         <span onClick={handlePaste} style={{ cursor: "pointer" }}>
-                            {translations.paste}
+                            {translate('paste')}
                         </span>
                         <Divider type="vertical" />
                     </div>
@@ -346,90 +346,90 @@ const Question: React.FC<QuestionProps> = memo(({
                     >
                         {availableTypes.includes('term-condition') && (
                             <Select.Option value="term-condition">
-                                <DashOutlined /> {translations.termCondition}
+                                <DashOutlined /> {translate('term-condition')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('signature') && (
                             <Select.Option value="signature">
-                                <DashOutlined /> {translations.signature}
+                                <DashOutlined /> {translate('signature')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('short-answer') && (
                             <Select.Option value="short-answer">
-                                <DashOutlined /> {translations.shortAnswer}
+                                <DashOutlined /> {translate('short-answer')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('static-text') && (
                             <Select.Option value="static-text">
-                                <DashOutlined /> {translations.staticText}
+                                <DashOutlined /> {translate('static-text')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('multiple-choice') && (
                             <Select.Option value="multiple-choice">
-                                <CheckCircleOutlined /> {translations.multipleChoice}
+                                <CheckCircleOutlined /> {translate('multiple-choice')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('cascader') && (
                             <Select.Option value="cascader">
-                                <CheckCircleOutlined /> {translations.cascader}
+                                <CheckCircleOutlined /> {translate('cascader')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('checkboxes') && (
                             <Select.Option value="checkboxes">
-                                <CheckSquareOutlined /> {translations.checkboxes}
+                                <CheckSquareOutlined /> {translate('checkboxes')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('dropdown') && (
                             <Select.Option value="dropdown">
-                                <DownCircleOutlined /> {translations.dropdown}
+                                <DownCircleOutlined /> {translate('dropdown')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('date-picker') && (
                             <Select.Option value="date-picker">
-                                <CalendarOutlined /> {translations.datePicker}
+                                <CalendarOutlined /> {translate('date-picker')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('phone-number') && (
                             <Select.Option value="phone-number">
-                                <PhoneOutlined /> {translations.phoneNumber}
+                                <PhoneOutlined /> {translate('phone-number')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('birthday') && (
                             <Select.Option value="birthday">
-                                <CalendarOutlined /> {translations.birthDay}
+                                <CalendarOutlined /> {translate('birthday')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('number') && (
                             <Select.Option value="number">
-                                <NumberOutlined /> {translations.number}
+                                <NumberOutlined /> {translate('number')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('switch') && (
                             <Select.Option value="switch">
-                                <BulbOutlined /> {translations.switch}
+                                <BulbOutlined /> {translate('switch')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('camera') && (
                             <Select.Option value="camera">
-                                <CameraOutlined /> {translations.camera}
+                                <CameraOutlined /> {translate('camera')}
                             </Select.Option>
                         )}
                         {availableTypes.includes('file-upload') && (
                             <Select.Option value="file-upload">
-                                <UploadOutlined /> {translations.fileUpload}
+                                <UploadOutlined /> {translate('file-upload')}
                             </Select.Option>
                         )}
                         
                         {availableTypes.includes('rating') && (
                             <Select.Option value="rating">
-                                <StarOutlined /> {translations.rating}
+                                <StarOutlined /> {translate('rating')}
                             </Select.Option>
                         )}
                     </Select>
                     {state.type === "dropdown" && (
                         <div style={{ marginBottom: 9 }}>
                             <label>
-                                {translations.multipleMode}{" "}
+                                {translate('multiple-mode')}{" "}
                                 <Switch
                                     size="small"
                                     defaultChecked={!!data.multipleMode}
@@ -471,7 +471,7 @@ const Question: React.FC<QuestionProps> = memo(({
                         <>
                             <Divider type="vertical" />
                             <label>
-                                {translations.show}
+                                {translate('show')}
                                 <Switch
                                     size="small"
                                     defaultChecked={state.showInDetails}
@@ -484,7 +484,7 @@ const Question: React.FC<QuestionProps> = memo(({
                         <>
                             <Divider type="vertical" />
                             <label>
-                                {translations.unique}
+                                {translate('unique')}
                                 <Switch size="small" defaultChecked={state.unique} onChange={setUnique} />
                             </label>
                         </>
@@ -493,7 +493,7 @@ const Question: React.FC<QuestionProps> = memo(({
                     <>
                         <Divider type="vertical" />
                         <label>
-                            {translations.required}{" "}
+                            {translate('required')}{" "}
                             <Switch size="small" defaultChecked={state.required} onChange={setRequired} />
                         </label>
                     </>

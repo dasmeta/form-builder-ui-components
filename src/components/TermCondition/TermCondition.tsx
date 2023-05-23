@@ -19,7 +19,7 @@ const TermCondition = forwardRef<any, TermConditionProps>(({
     fulfillCondition = false
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
 
     return (
         <Row gutter={24}>
@@ -34,7 +34,7 @@ const TermCondition = forwardRef<any, TermConditionProps>(({
                         onChange={value => onChange(get(value, "target.checked"), false)}
                         checked={fulfillCondition}
                     >
-                        {translations.termConditionAgreeText}
+                        {translate('term-condition-agree-text')}
                     </Checkbox>
                 </Col>
             )}

@@ -55,7 +55,7 @@ const Section: React.FC<SectionProps> = memo(({
     onRemove
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
 
     const [id, setId] = useState<number>(data.id || Date.now());
     const [questions, setQuestions] = useState<Array<any>>(data.questions || []);
@@ -105,7 +105,7 @@ const Section: React.FC<SectionProps> = memo(({
                 <div>
                     <h1
                         contentEditable={true}
-                        placeholder={sectionIndex === 0 ? translations.formTitle : translations.sectionTitle}
+                        placeholder={sectionIndex === 0 ? translate('form-title') : translate('section-title')}
                         onBlur={changeName}
                         dangerouslySetInnerHTML={{ __html: name }}
                     />
@@ -151,14 +151,14 @@ const Section: React.FC<SectionProps> = memo(({
             </Droppable>
             <div>
                 <a onClick={addQuestion}>
-                    <PlusOutlined /> {translations.addField}
+                    <PlusOutlined /> {translate('add-field')}
                 </a>
                 {!!onRemove && (
                     <>
                         <Divider type="vertical" />
-                        <Popconfirm onConfirm={onRemove} title={translations.changesWillBeLost}>
+                        <Popconfirm onConfirm={onRemove} title={translate('changes-will-be-lost')}>
                             <a>
-                                <DeleteOutlined /> {translations.removeSection}
+                                <DeleteOutlined /> {translate('remove-section')}
                             </a>
                         </Popconfirm>
                     </>

@@ -33,7 +33,7 @@ const CascaderOption: React.FC<CascaderOptionProps> = ({
     setStages,
     setOptions,
 }) => {
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
     const [stateStage, setStateStage] = useState(stages);
     const section = useRef(stages.length ? stages[0].split(".")[0] : null);
 
@@ -262,10 +262,10 @@ const CascaderOption: React.FC<CascaderOptionProps> = ({
                                 onClick={() => handleSetStage(uniq([...stateStage, undefined]))}
                                 style={{ cursor: "pointer" }}
                             >
-                                <span className="action">{translations.addStage}</span>
+                                <span className="action">{translate('add-stage')}</span>
                             </span>
                             <span onClick={handleRemoveStage} style={{ marginLeft: 10, cursor: "pointer" }}>
-                                <span className="action">{translations.removeStage}</span>
+                                <span className="action">{translate('remove-stage')}</span>
                             </span>
                         </h4>
                     </div>

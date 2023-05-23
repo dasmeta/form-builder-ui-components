@@ -25,7 +25,7 @@ const Upload: React.FC<UploadProps> = ({
     attachments = []
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
 
     if(!editable) {
         return (
@@ -58,7 +58,7 @@ const Upload: React.FC<UploadProps> = ({
                 folder={folder}
                 multiple
                 withName
-                label={translations.attachFile}
+                label={translate('attach-file')}
                 onChange={onChange}
                 onDelete={onDelete}
             />

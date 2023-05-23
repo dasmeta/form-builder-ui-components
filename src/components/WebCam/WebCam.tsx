@@ -29,7 +29,7 @@ const WebCam: React.FC<WebCamProps> = ({
     onDelete,
     editable = false 
 }) => {
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
     const [actionType, setActionType] = useState(null);
     const [permission, setPermission] = useState(false);
     const [url, setUrl] = useState();
@@ -78,7 +78,7 @@ const WebCam: React.FC<WebCamProps> = ({
                     setPermission(get(stream, "active", "false"));
                 })
                 .catch(function (err) {
-                    message.error(translations.mediaGrantAccess);
+                    message.error(translate('media-grant-access'));
                 });
         },
         [value]
@@ -115,10 +115,10 @@ const WebCam: React.FC<WebCamProps> = ({
             <div className="actions-btn">
                 <Button.Group>
                     <Button onClick={() => handleAccess("camera")} type="primary" icon={<CameraOutlined />}>
-                        {translations.takePhoto}
+                        {translate('take-photo')}
                     </Button>
                     <Button onClick={() => handleAccess("upload")} type="primary" icon={<UploadOutlined />}>
-                        {translations.uploadPhoto}
+                        {translate('upload-photo')}
                     </Button>
                 </Button.Group>
             </div>
@@ -163,7 +163,7 @@ const WebCam: React.FC<WebCamProps> = ({
             onDelete={onDelete}
             folder={folder}
             withName
-            label={translations.attachPhoto}
+            label={translate('attach-photo')}
         />
     );
 };

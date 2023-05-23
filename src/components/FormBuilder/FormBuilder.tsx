@@ -63,7 +63,7 @@ const getNormalizer = (item) => {
     return undefined;
 };
 
-const getRules = (item, form, translations) => {
+const getRules = (item, form, translate) => {
     const disabled = item.depend ? !form.getFieldValue(item.depend) : false;
     const rules: any = [
         {
@@ -86,19 +86,19 @@ const getRules = (item, form, translations) => {
     if (item.question === "Email") {
         rules.push({
             type: "email",
-            message: translations.emailValidationMessage,
+            message: translate('email-validation-message'),
         });
     }
     if (item.question === "Phone Number") {
         rules.push({
             pattern: /^[0-9\s\-()]+$/i,
-            message: translations.phoneValidationMessage,
+            message: translate('phone-validation-message'),
         });
     }
     if (item.type === "number") {
         rules.push({
             pattern: /^[0-9]+$/i,
-            message: translations.numberValidationMessage,
+            message: translate('number-validation-message'),
         });
     }
     if (item.type === "phone-number") {
@@ -144,7 +144,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
 }) => {
 
     const dependFieldList = uniq(defaultQuestions.map(item => item.depend).filter(Boolean));
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
     const [dependFieldValues, setDependFieldValues] = useState<any>({});
 
     const scrollToRef = (ref) => {
@@ -229,7 +229,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({
                         valuePropName={getValuePropName(item)}
                         normalize={getNormalizer(item)}
                         initialValue={getValue(item, data)}
-                        rules={getRules(item, form, translations)}
+                        rules={getRules(item, form, translate)}
                         {...formLayouts}
                     >
                         {formElement({ ...elementProps(item, isDisabled) })}

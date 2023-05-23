@@ -16,7 +16,7 @@ const FormView: React.FC<FormViewProps> = ({
     successText 
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
 
     const classNames = [];
     if(showDetails) {
@@ -55,9 +55,9 @@ const FormView: React.FC<FormViewProps> = ({
                 successText
             ) : (
                 <>
-                    {translations.registrationIsAccepted}
+                    {translate('registration-is-accepted')}
                     <br />
-                    {translations.ourSpecialistWillContactYou}
+                    {translate('our-specialist-will-contact-you')}
                 </>
             )}
         </div>

@@ -13,7 +13,7 @@ const FormUpload: React.FC<FormUploadProps> = ({
     onChange = () => {} 
 }) => {
 
-    const { types, translations } = useContext(ConfigContext);
+    const { types, translate } = useContext(ConfigContext);
     const uploadOptions = types['file-upload'] as UploadProps;
 
     const handleFileListChange = useCallback(
@@ -30,7 +30,7 @@ const FormUpload: React.FC<FormUploadProps> = ({
             folder={uploadOptions.folder}
             multiple
             withName
-            label={translations.attachFile}
+            label={translate('attach-file')}
             value={isArray(options[0].value) ? options[0].value : []}
             onChange={handleFileListChange}
             onDelete={uploadOptions.onDelete}

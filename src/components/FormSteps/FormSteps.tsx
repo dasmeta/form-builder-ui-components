@@ -34,7 +34,7 @@ const FormSteps: React.FC<FormStepsProps> = ({
     onSubmit
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
     const [state, setState] = useState<any>({
         sections: [],
         current: 1,
@@ -133,7 +133,7 @@ const FormSteps: React.FC<FormStepsProps> = ({
                 </Title>
                 {description && (
                     <Paragraph className="title">
-                        <span>{translations.description}</span>
+                        <span>{translate('description')}</span>
                         {` - ${description}`}
                     </Paragraph>
                 )}

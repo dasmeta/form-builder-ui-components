@@ -53,7 +53,7 @@ const Form: React.FC<FormProps> = ({
     defaultValues,
 }) => {
 
-    const { translations } = useContext(ConfigContext);
+    const { translate } = useContext(ConfigContext);
 
     if (!beautifulPreview) {
         return (
@@ -95,14 +95,14 @@ const Form: React.FC<FormProps> = ({
 
                 <div className="form-container">
                     <Title level={2} className="title">
-                        {inactive ? translations.sorry : title}
+                        {inactive ? translate('sorry') : title}
                     </Title>
 
                     <div className="form">
                         {inactive ? (
                             <div className="finished-form">
                                 <Title level={2}>
-                                    {inactiveMessage || translations.inactiveForm}
+                                    {inactiveMessage || translate('inactive-form')}
                                 </Title>
                             </div>
                         ) : (

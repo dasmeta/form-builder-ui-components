@@ -63,7 +63,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
     onSave = async () => {}
 }) => {
 
-    const { translations, prefix } = useContext(ConfigContext);
+    const { translate, prefix } = useContext(ConfigContext);
 
     const [state, setState] = useState<any>({
         sections: [],
@@ -214,13 +214,13 @@ const FormEditor: React.FC<FormEditorProps> = ({
         try {
             const { sectionData, validateKey } = store.get(`${prefix}-section-copy`);
             if (Date.now() - validateKey > 10 * 60 * 1000) {
-                message.warn(translations.copyAgain);
+                message.warn(translate('copy-again'));
                 store.remove(`${prefix}-section-copy`);
                 return;
             }
 
             if (isEmpty(sectionData)) {
-                message.warn(translations.nothingToPaste);
+                message.warn(translate('nothing-to-paste'));
                 return;
             }
 
@@ -230,7 +230,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
           
         } catch (e) {
             console.error(e);
-            message.warn(translations.nothingCopied);
+            message.warn(translate('nothing-copied'));
         }
     };
 
@@ -244,29 +244,29 @@ const FormEditor: React.FC<FormEditorProps> = ({
                 }}
             >
                 <div>
-                    <strong>{state.name}</strong> {updating ? <i>{translations.saving}</i> : <span>{translations.allChangesSaved}</span>}
+                    <strong>{state.name}</strong> {updating ? <i>{translate('saving')}</i> : <span>{translate('all-changes-saved')}</span>}
                 </div>
                 <div>
                     <Text
                         copyable={{
                             onCopy: () => {
                                 if (!state.sections.filter((section) => !isEmpty(section.questions)).length) {
-                                    message.warn(translations.nothingToCopy);
+                                    message.warn(translate('nothing-to-copy'));
                                     return;
                                 }
                                 store.set(`${prefix}-section-copy`, { sectionData: state.sections, validateKey: Date.now() });
                             },
                         }}
                     >
-                        {translations.copyForm}
+                        {translate('copy-form')}
                     </Text>
                     <Divider type="vertical" />
                     <span onClick={handlePastSections} style={{ cursor: "pointer" }}>
-                        {translations.paste}
+                        {translate('paste')}
                     </span>
                     <Divider type="vertical" />
                     <span onClick={() => setPreview(preview => !preview)} className="preview">
-                        {translations.preview} {preview ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+                        {translate('preview')} {preview ? <EyeInvisibleOutlined /> : <EyeOutlined />}
                     </span>
                 </div>
             </div>
@@ -308,7 +308,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
 
             {showAddSection && (
                 <a onClick={addSection}>
-                    <PlusOutlined /> {translations.addSection} <ColumnHeightOutlined />
+                    <PlusOutlined /> {translate('add-section')} <ColumnHeightOutlined />
                 </a>
             )}
         </div>
