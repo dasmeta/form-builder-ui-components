@@ -77,7 +77,8 @@ export type TranslationsProps = Partial<{
     'camera':  ReactElement | string;
     'file-upload':  ReactElement | string;
     'rating':  ReactElement | string;
-    
+    'submit': ReactElement | string;
+    'next': ReactElement | string;
 }>
 
 const defaultTranslations: TranslationsProps = {
@@ -133,7 +134,9 @@ const defaultTranslations: TranslationsProps = {
     'switch': 'Switch',
     'camera':  'Camera',
     'file-upload':  'File Upload',
-    'rating':  'Rating'
+    'rating':  'Rating',
+    'submit': 'Submit',
+    'next': 'Next'
 }
 
 export type ConfigProps = {

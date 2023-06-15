@@ -203,7 +203,7 @@ const FormSteps: React.FC<FormStepsProps> = ({
                     loading={state.loading}
                     onClick={next}
                 >
-                    {state.current === state.sections.length ? "Submit" : "Next"}{" "}
+                    {state.current === state.sections.length ? translate('submit') : translate('next')}{" "}
                     {state.current !== state.sections.length && <RightOutlined />}
                 </Button>
             </div>
