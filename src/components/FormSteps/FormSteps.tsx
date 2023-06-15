@@ -156,7 +156,7 @@ const FormSteps: React.FC<FormStepsProps> = ({
                         loading={state.loading}
                         onClick={next}
                     >
-                        Submit
+                        {translate('submit')}
                     </Button>
                 </div>
             </div>
