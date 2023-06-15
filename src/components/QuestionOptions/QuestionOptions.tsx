@@ -134,7 +134,7 @@ const QuestionOptions: React.FC<QuestionOptionsProps> = memo(({
                                         <div className="question-option-text">
                                             <h4
                                                 contentEditable={true}
-                                                placeholder={"Option"}
+                                                placeholder={translate('option')}
                                                 onBlur={e => setOption(e, index)}
                                                 dangerouslySetInnerHTML={{
                                                     __html: isString(option) ? option : get(option, "value", ""),
@@ -190,7 +190,7 @@ const QuestionOptions: React.FC<QuestionOptionsProps> = memo(({
                                             {!get(options, `[${index}].validOption`, true) && (
                                                 <h4
                                                     contentEditable={true}
-                                                    placeholder={"Validation Message"}
+                                                    placeholder={translate('validation-message')}
                                                     onBlur={e => setValidMessage(e, index)}
                                                     dangerouslySetInnerHTML={{
                                                         __html: get(option, "validMessage", ""),

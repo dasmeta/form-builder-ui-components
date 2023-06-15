@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Cascader } from "antd";
 import isArray from "lodash/isArray";
 import isObject from "lodash/isObject";
+import { ConfigContext } from "../../context/Config";
 
 type CascadeSelectProps = {
     value?: any;
@@ -11,6 +12,9 @@ type CascadeSelectProps = {
 }
 
 const CascadeSelect: React.FC<CascadeSelectProps> = ({ value, stages, options, onChange }) => {
+
+    const { translate } = useContext(ConfigContext);
+
     const handleChange = option => {
         const result = stages.reduce((acc, key, index) => {
             acc[key] = option[index];
@@ -24,7 +28,7 @@ const CascadeSelect: React.FC<CascadeSelectProps> = ({ value, stages, options, o
             value={isArray(value) ? value : isObject(value) ? Object.values(value) : []}
             options={options}
             onChange={handleChange}
-            placeholder="Please select"
+            placeholder={translate('please-select')}
         />
     );
 };

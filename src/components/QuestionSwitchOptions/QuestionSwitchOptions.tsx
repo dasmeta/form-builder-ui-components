@@ -1,8 +1,9 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { Row, Col, Switch } from "antd";
 import get from "lodash/get";
 import set from "lodash/set";
 import isString from "lodash/isString";
+import { ConfigContext } from "../../context/Config";
 
 type QuestionSwitchOptionsType = {
     options: Array<any>;
@@ -10,6 +11,9 @@ type QuestionSwitchOptionsType = {
 }
 
 const QuestionSwitchOptions: React.FC<QuestionSwitchOptionsType> = ({ options = [], onChange = () => {} }) => {
+
+    const { translate } = useContext(ConfigContext);
+
     const handelSetOption = useCallback((e, index) => {
         set(options, `[${index}].value`, e.target.textContent.trim());
         onChange(options);
@@ -33,7 +37,7 @@ const QuestionSwitchOptions: React.FC<QuestionSwitchOptionsType> = ({ options = 
                         <Col span={18}>
                             <h4
                                 contentEditable={true}
-                                placeholder={"Checked Label"}
+                                placeholder={translate('checked-label')}
                                 onBlur={e => handelSetOption(e, 0)}
                                 dangerouslySetInnerHTML={{
                                     __html: isString(options[0]) ? options[0] : get(options, "[0].value", ""),
@@ -42,7 +46,7 @@ const QuestionSwitchOptions: React.FC<QuestionSwitchOptionsType> = ({ options = 
                             {!get(options, `[0].validOption`, true) && (
                                 <h4
                                     contentEditable={true}
-                                    placeholder={"Valid Message"}
+                                    placeholder={translate('valid-message')}
                                     onBlur={e => handelSetValidateMessage(e, 0)}
                                     dangerouslySetInnerHTML={{
                                         __html: get(options, "[0].validMessage", ""),
@@ -66,7 +70,7 @@ const QuestionSwitchOptions: React.FC<QuestionSwitchOptionsType> = ({ options = 
                         <Col span={18}>
                             <h4
                                 contentEditable={true}
-                                placeholder={"Unchecked Label"}
+                                placeholder={translate('unchecked-label')}
                                 onBlur={e => handelSetOption(e, 1)}
                                 dangerouslySetInnerHTML={{
                                     __html: isString(options[1]) ? options[1] : get(options, "[1].value", ""),
@@ -75,7 +79,7 @@ const QuestionSwitchOptions: React.FC<QuestionSwitchOptionsType> = ({ options = 
                             {!get(options, `[1].validOption`, true) && (
                                 <h4
                                     contentEditable={true}
-                                    placeholder={"Valid Message"}
+                                    placeholder={translate('valid-message')}
                                     onBlur={e => handelSetValidateMessage(e, 1)}
                                     dangerouslySetInnerHTML={{
                                         __html: get(options, "[1].validMessage", ""),

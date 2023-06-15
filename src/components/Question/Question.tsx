@@ -238,7 +238,7 @@ const Question: React.FC<QuestionProps> = memo(({
                         {!["static-text"].includes(state.type) && (
                             <h3
                                 contentEditable={true}
-                                placeholder="Question"
+                                placeholder={translate('question')}
                                 onBlur={setQuestion}
                                 dangerouslySetInnerHTML={{ __html: state.question }}
                             />
@@ -248,9 +248,9 @@ const Question: React.FC<QuestionProps> = memo(({
                         {["short-answer", "dropdown", "number"].includes(state.type) && (
                             <div style={{ paddingLeft: 30, width: "60%" }}>
                                 <h5
-                                    title="Placeholder"
+                                    title={translate('placeholder')}
                                     contentEditable={true}
-                                    placeholder={"Placeholder"}
+                                    placeholder={translate('placeholder')}
                                     onBlur={setPlaceholder}
                                     dangerouslySetInnerHTML={{ __html: state.placeholder || state.question }}
                                 />
@@ -320,7 +320,7 @@ const Question: React.FC<QuestionProps> = memo(({
                             onBlur={isExpert && ((value) => setName(get(value, "target.value")))}
                             onChange={!isExpert && setName}
                             allowClear
-                            placeholder="Association"
+                            placeholder={translate('association')}
                             optionLabelProp={isExpert ? "value" : undefined}
                         >
                             {association.map((item) =>
@@ -444,7 +444,7 @@ const Question: React.FC<QuestionProps> = memo(({
                             className="select"
                             defaultValue={state.depend || undefined}
                             onChange={setDepend}
-                            placeholder="Depends from switch"
+                            placeholder={translate('depends-from-switch')}
                             allowClear
                             getPopupContainer={(trigger) => trigger.parentNode}
                         >

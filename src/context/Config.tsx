@@ -79,6 +79,16 @@ export type TranslationsProps = Partial<{
     'rating':  ReactElement | string;
     'submit': ReactElement | string;
     'next': ReactElement | string;
+    'question': ReactElement | string;
+    'option': ReactElement | string;
+    'association': ReactElement | string;
+    'please-select': ReactElement | string;
+    'placeholder': ReactElement | string;
+    'depends-from-switch': ReactElement | string;
+    'validation-message': ReactElement | string;
+    'checked-label': ReactElement | string;
+    'unchecked-label': ReactElement | string;
+    'valid-message': ReactElement | string;
 }>
 
 const defaultTranslations: TranslationsProps = {
@@ -136,7 +146,17 @@ const defaultTranslations: TranslationsProps = {
     'file-upload':  'File Upload',
     'rating':  'Rating',
     'submit': 'Submit',
-    'next': 'Next'
+    'next': 'Next',
+    'question': 'Question',
+    'option': 'Option',
+    'association': 'Association',
+    'please-select': 'Please select',
+    'placeholder': 'Placeholder',
+    'depends-from-switch': 'Depends from switch',
+    'validation-message': 'Validation message',
+    'checked-label': 'Checked label',
+    'unchecked-label': 'Unchecked label',
+    'valid-message': 'Valid message'
 }
 
 export type ConfigProps = {

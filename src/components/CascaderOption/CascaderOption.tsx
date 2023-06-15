@@ -173,7 +173,7 @@ const CascaderOption: React.FC<CascaderOptionProps> = ({
                                 <h4
                                     style={{ width: "90%" }}
                                     contentEditable={true}
-                                    placeholder={"Option"}
+                                    placeholder={translate('option')}
                                     onBlur={e => handleChangeOption(get(e, "target.textContent").trim(), currentAdress)}
                                     dangerouslySetInnerHTML={{
                                         __html: element.value,
@@ -198,7 +198,7 @@ const CascaderOption: React.FC<CascaderOptionProps> = ({
                     <h4
                         style={{ width: "90%" }}
                         contentEditable={true}
-                        placeholder={"Option"}
+                        placeholder={translate('option')}
                         onBlur={e => handleChangeOption(get(e, "target.textContent").trim(), currentAdress)}
                         dangerouslySetInnerHTML={{
                             __html: element.value,
@@ -249,7 +249,7 @@ const CascaderOption: React.FC<CascaderOptionProps> = ({
                                 <h3
                                     style={{ width: "100%" }}
                                     contentEditable={true}
-                                    placeholder="association"
+                                    placeholder={translate('association')}
                                     onBlur={e => handleStageSelect(get(e, "target.textContent").trim(), index)}
                                     dangerouslySetInnerHTML={{ __html: stage }}
                                 />
