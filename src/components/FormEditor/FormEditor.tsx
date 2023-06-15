@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useRef, useContext, ReactElement } from "react";
 import { ColumnHeightOutlined, EyeInvisibleOutlined, EyeOutlined, PlusOutlined } from "@ant-design/icons";
 import { Divider, Typography, message } from "antd";
 import store from "store2";
@@ -43,6 +43,7 @@ type FormEditorProps = {
     beautifulPreview?: boolean;
     association?: Array<any>;
     sections: Array<any>;
+    successText?: ReactElement;
     onSave: (data: any) => Promise<any>;
 };
 
@@ -58,6 +59,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
     showUniqueOption = false,
     isExpert = false,
     beautifulPreview = true,
+    successText,
     association = [],
     sections = [],
     onSave = async () => {}
@@ -278,6 +280,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
                     sections={state.sections}
                     description={description}
                     beautifulPreview={beautifulPreview}
+                    successText={successText}
                 />
             ) : (
                 <div>
