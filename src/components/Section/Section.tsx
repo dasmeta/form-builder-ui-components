@@ -30,6 +30,7 @@ type SectionProps = {
     showDependencyField: boolean;
     showInListOption?: boolean;
     showUniqueOption?: boolean;
+    associationFieldRequired?: boolean;
     isExpert: boolean;
     focus: boolean;
     onChange: Function;
@@ -48,6 +49,7 @@ const Section: React.FC<SectionProps> = memo(({
     showDependencyField,
     showInListOption,
     showUniqueOption,
+    associationFieldRequired,
     isExpert,
     focus,
     onChange = () => {},
@@ -126,6 +128,7 @@ const Section: React.FC<SectionProps> = memo(({
                                             showValidateField={showValidateField}
                                             showAssociationField={showAssociationField}
                                             showDependencyField={showDependencyField}
+                                            associationFieldRequired={associationFieldRequired}
                                             key={question.id}
                                             sectionIndex={sectionIndex}
                                             questionIndex={index}

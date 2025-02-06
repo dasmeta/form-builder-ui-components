@@ -19,7 +19,7 @@ import store from "store2";
 import startCase from "lodash/startCase";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
-import { ConfigContext } from '../../context/Config';
+import { ConfigContext, TranslationsProps } from '../../context/Config';
 import QuestionOptions from '../QuestionOptions';
 import CascaderOption from '../CascaderOption';
 import TermConditionQuestion from '../TermConditionQuestion';
@@ -45,6 +45,7 @@ type QuestionProps = {
     showValidateField: boolean;
     showInListOption?: boolean;
     showUniqueOption?: boolean;
+    associationFieldRequired?: boolean;
     sectionIndex: number;
     questionIndex: number; 
     dragHandleProps: any;
@@ -64,6 +65,7 @@ const Question: React.FC<QuestionProps> = memo(({
     showValidateField,
     showInListOption = false,
     showUniqueOption = false,
+    associationFieldRequired = false,
     sectionIndex,
     questionIndex,
     dragHandleProps
@@ -87,6 +89,8 @@ const Question: React.FC<QuestionProps> = memo(({
         focus: true,
         multipleMode: data.multipleMode
     })
+
+    const [nameError, setNameError] = useState<keyof TranslationsProps>(associationFieldRequired && !data.name ? 'required-field' : undefined);
 
     const firstUpdate = useRef(true);
     useEffect(() => {
@@ -178,7 +182,16 @@ const Question: React.FC<QuestionProps> = memo(({
     };
 
     const setName = (name) => {
-        changeState({ name });
+        if (!name || /^[A-Za-z._-]+$/.test(name)) {
+            if(associationFieldRequired && !name) {
+                setNameError("required-field");
+            } else {
+                setNameError(undefined);
+                changeState({ name });
+            }
+        } else {
+            setNameError("association-validation-message");
+        }
     };
 
     const setStages = (stages) => {
@@ -313,30 +326,33 @@ const Question: React.FC<QuestionProps> = memo(({
                         <Divider type="vertical" />
                     </div>
                     {showAssociationField && !["cascader"].includes(state.type) && (
-                        <NameSelect
-                            disabled={["term-condition", "static-text"].includes(state.type)}
-                            className="select"
-                            defaultValue={state.name || undefined}
-                            onBlur={isExpert && ((value) => setName(get(value, "target.value")))}
-                            onChange={!isExpert && setName}
-                            allowClear
-                            placeholder={translate('association')}
-                            optionLabelProp={isExpert ? "value" : undefined}
-                        >
-                            {association.map((item) =>
-                                item.fields.length ? (
-                                    <Select.OptGroup key={item.name} label={startCase(item.name)}>
-                                        {item.fields.map((field) => (
-                                            <NameSelect.Option key={`${item.name}.${field}`}>
-                                                <small>{startCase(item.name)}</small> → {startCase(field)}
-                                            </NameSelect.Option>
-                                        ))}
-                                    </Select.OptGroup>
-                                ) : item.allowNull ? null : (
-                                    <NameSelect.Option key={item.name}>{startCase(item.name)}</NameSelect.Option>
-                                )
-                            )}
-                        </NameSelect>
+                        <>
+                            <NameSelect
+                                disabled={["term-condition", "static-text"].includes(state.type)}
+                                className="select"
+                                defaultValue={state.name || undefined}
+                                onBlur={isExpert && ((value) => setName(get(value, "target.value")))}
+                                onChange={!isExpert && setName}
+                                allowClear
+                                placeholder={translate('association')}
+                                optionLabelProp={isExpert ? "value" : undefined}
+                            >
+                                {association.map((item) =>
+                                    item.fields.length ? (
+                                        <Select.OptGroup key={item.name} label={startCase(item.name)}>
+                                            {item.fields.map((field) => (
+                                                <NameSelect.Option key={`${item.name}.${field}`}>
+                                                    <small>{startCase(item.name)}</small> → {startCase(field)}
+                                                </NameSelect.Option>
+                                            ))}
+                                        </Select.OptGroup>
+                                    ) : item.allowNull ? null : (
+                                        <NameSelect.Option key={item.name}>{startCase(item.name)}</NameSelect.Option>
+                                    )
+                                )}
+                            </NameSelect>
+                            {!!nameError && <div style={{ color: "red", marginTop: "-8px" }}>{translate(nameError)}</div>}
+                        </>
                     )}
                     <Select
                         className="select"

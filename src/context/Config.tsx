@@ -89,6 +89,8 @@ export type TranslationsProps = Partial<{
     'checked-label': ReactElement | string;
     'unchecked-label': ReactElement | string;
     'valid-message': ReactElement | string;
+    'association-validation-message': ReactElement | string;
+    'required-field': ReactElement | string;
 }>
 
 const defaultTranslations: TranslationsProps = {
@@ -156,7 +158,9 @@ const defaultTranslations: TranslationsProps = {
     'validation-message': 'Validation message',
     'checked-label': 'Checked label',
     'unchecked-label': 'Unchecked label',
-    'valid-message': 'Valid message'
+    'valid-message': 'Valid message',
+    'association-validation-message': 'Only Latin letters, -, _, and . are allowed!',
+    'required-field': 'Field is required'
 }
 
 export type ConfigProps = {

@@ -39,6 +39,7 @@ type FormEditorProps = {
     showFormTitle?: boolean;
     showInListOption?: boolean;
     showUniqueOption?: boolean;
+    associationFieldRequired?: boolean;
     isExpert: boolean;
     beautifulPreview?: boolean;
     association?: Array<any>;
@@ -57,6 +58,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
     showFormTitle = true,
     showInListOption = false,
     showUniqueOption = false,
+    associationFieldRequired = false,
     isExpert = false,
     beautifulPreview = true,
     successText,
@@ -290,6 +292,7 @@ const FormEditor: React.FC<FormEditorProps> = ({
                                 showValidateField={showValidateField}
                                 showAssociationField={showAssociationField}
                                 showDependencyField={showDependencyField}
+                                associationFieldRequired={associationFieldRequired}
                                 key={section.id}
                                 sectionIndex={index}
                                 data={section}
