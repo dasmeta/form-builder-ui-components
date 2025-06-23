@@ -1,24 +1,25 @@
 import React, { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import { Input, Select } from "antd";
-import PhoneNumber from "awesome-phonenumber";
+import { getSupportedRegionCodes, parsePhoneNumber, getCountryCodeForRegionCode } from "awesome-phonenumber";
 import isObject from "lodash/isObject";
 import codesToData from "../../region-code.json";
 
-export const normalize = pn => (isObject(pn) ? (pn.getNumber() || "").replace("+", "") : pn);
+export const normalize = pn => (isObject(pn) ? (pn.number?.e164 || "").replace("+", "") : pn);
 export const validator = async (rule, value) => {
     if (!value) {
         return true;
     }
 
-    const pn = new PhoneNumber(`+${value || ""}`);
-    if (pn.isValid()) {
+    const pn = parsePhoneNumber(`+${value || ""}`);
+
+    if (pn.valid) {
         return true;
     }
 
     throw "The input is not valid phone number!";
 };
 
-const regionList = PhoneNumber.getSupportedRegionCodes()
+const regionList = getSupportedRegionCodes()
     .map(code => codesToData[code])
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -36,10 +37,10 @@ const PhoneInput: React.FC<PhoneInputType> = ({ value, defaultCountry = "AM", on
     const input = useRef<any>();
     const isFirstTime = useRef(true);
 
-    const pn = useMemo(() => new PhoneNumber(phoneNumber || "", country), [phoneNumber, country]);
-    const countryCode = useMemo(() => pn.getCountryCode(), [country]);
+    const pn = useMemo(() => parsePhoneNumber(phoneNumber || "", { regionCode: country }), [phoneNumber, country]);
+    const countryCode = useMemo(() => getCountryCodeForRegionCode(country), [country]);
     const internationalNumber = useMemo(
-        () => (pn.getNumber("international") || "").replace(`+${countryCode} `, "") || phoneNumber,
+        () => (pn.number?.international || "").replace(`+${countryCode} `, "") || phoneNumber,
         [countryCode, phoneNumber]
     );
 
@@ -51,8 +52,8 @@ const PhoneInput: React.FC<PhoneInputType> = ({ value, defaultCountry = "AM", on
     }, [value]);
 
     useEffect(() => {
-        if (pn.getRegionCode()) {
-            setCountry(pn.getRegionCode());
+        if (pn.regionCode) {
+            setCountry(pn.regionCode);
         }
         if (isFirstTime.current) {
             isFirstTime.current = false;
